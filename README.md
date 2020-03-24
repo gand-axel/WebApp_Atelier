@@ -1,7 +1,9 @@
 # WebApp_Atelier
 
 > Axel GAND
+
 > Antoine GACHENOT
+
 > LP2
 
 # GeoQuizz
@@ -10,7 +12,7 @@
 
 ## Installation
 
-> Pour lancer le projet, exécutez les commandes suivantes dans le dossier GeoQuizz :
+Pour lancer le projet, exécutez les commandes suivantes dans le dossier GeoQuizz :
 
 ``` bash
 # Pour installer les dépendances
