@@ -1,8 +1,6 @@
-# WebApp_Atelier
+# WebApp_Atelier 2019/2020 version Vue.js
 
-Axel GAND
-Antoine GACHENOT
-LP2
+Axel GAND, Antoine GACHENOT		LP2
 
 # GeoQuizz
 
