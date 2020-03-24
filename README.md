@@ -1,10 +1,8 @@
 # WebApp_Atelier
 
-> Axel GAND
-
-> Antoine GACHENOT
-
-> LP2
+Axel GAND
+Antoine GACHENOT
+LP2
 
 # GeoQuizz
 
