@@ -47,7 +47,8 @@ export default {
             series: [],
             tabSerieVille: [],
             idSerie: null,
-            mapRef: null,
+            latitude: null,
+            longitude: null,
             dist: 0,
             nbPhotos: 5,
             options: [
@@ -67,7 +68,8 @@ export default {
             this.series.forEach(serie => {
                 if(this.ville === serie.ville) {
                     this.idSerie = serie.id;
-                    this.mapRef = serie.mapRef;
+                    this.latitude = serie.latitude;
+                    this.longitude = serie.longitude;
                     this.dist = serie.dist;
                 }
             });
@@ -110,7 +112,8 @@ export default {
                 this.$router.push({ name: 'Jeu', params: { props: { 
                     dataUser: this.$route.params.props.dataUser, 
                     photos: this.dataJeu,
-                    mapRef: this.mapRef,
+                    latitude: this.latitude,
+                    longitude: this.longitude,
                     dist: this.dist
                 }}});
             })
@@ -137,7 +140,8 @@ export default {
                 this.series.push({
                     id: serie.serie.idSerie,
                     ville: serie.serie.ville,
-                    mapRef: serie.serie.mapRef,
+                    latitude: serie.serie.latitude,
+                    longitude: serie.serie.longitude,
                     dist: serie.serie.dist
                 });
             });
