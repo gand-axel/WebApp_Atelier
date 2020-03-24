@@ -47,6 +47,8 @@ export default {
             series: [],
             tabSerieVille: [],
             idSerie: null,
+            mapRef: null,
+            dist: 0,
             nbPhotos: 5,
             options: [
                 { text:"5", value: 5 },
@@ -65,6 +67,8 @@ export default {
             this.series.forEach(serie => {
                 if(this.ville === serie.ville) {
                     this.idSerie = serie.id;
+                    this.mapRef = serie.mapRef;
+                    this.dist = serie.dist;
                 }
             });
 
@@ -105,7 +109,9 @@ export default {
 
                 this.$router.push({ name: 'Jeu', params: { props: { 
                     dataUser: this.$route.params.props.dataUser, 
-                    photos: this.dataJeu
+                    photos: this.dataJeu,
+                    mapRef: this.mapRef,
+                    dist: this.dist
                 }}});
             })
             .catch(error => {
@@ -130,7 +136,9 @@ export default {
             response.data.series.forEach(serie => {
                 this.series.push({
                     id: serie.serie.idSerie,
-                    ville: serie.serie.ville
+                    ville: serie.serie.ville,
+                    mapRef: serie.serie.mapRef,
+                    dist: serie.serie.dist
                 });
             });
         })
