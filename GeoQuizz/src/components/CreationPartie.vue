@@ -50,6 +50,7 @@ export default {
             latitude: null,
             longitude: null,
             dist: 0,
+            zoom: 0,
             nbPhotos: 5,
             options: [
                 { text:"5", value: 5 },
@@ -71,6 +72,7 @@ export default {
                     this.latitude = serie.latitude;
                     this.longitude = serie.longitude;
                     this.dist = serie.dist;
+                    this.zoom = serie.zoom;
                 }
             });
 
@@ -114,7 +116,8 @@ export default {
                     photos: this.dataJeu,
                     latitude: this.latitude,
                     longitude: this.longitude,
-                    dist: this.dist
+                    dist: this.dist,
+                    zoom: this.zoom
                 }}});
             })
             .catch(error => {
@@ -142,7 +145,8 @@ export default {
                     ville: serie.serie.ville,
                     latitude: serie.serie.latitude,
                     longitude: serie.serie.longitude,
-                    dist: serie.serie.dist
+                    dist: serie.serie.dist,
+                    zoom: serie.serie.zoom
                 });
             });
         })
