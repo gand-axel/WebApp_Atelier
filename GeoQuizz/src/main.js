@@ -15,9 +15,10 @@ Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 
 Vue.use(VueGoogleMaps, {
+  installComponents: true,
   load:{
     key: 'AIzaSyDv6iLip5yGiu8t19TtjLzDnWHwP_HskV0',
-    libraries:"places"
+    libraries: 'places,drawing,geometry'
   }
 });
 
