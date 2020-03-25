@@ -106,9 +106,11 @@ export default {
                 });
                 
                 this.difference = this.dataJeu.length - this.nbPhotos;
-                for(let i=0; i<this.difference; i++){
-                    this.numAlea = Math.floor(Math.random()*(this.dataJeu.length-1));
-                    this.dataJeu.splice(this.numAlea, 1);
+                if(this.diférence > 0) {
+                    for(let i=0; i<this.difference; i++){
+                        this.numAlea = Math.floor(Math.random()*(this.dataJeu.length-1));
+                        this.dataJeu.splice(this.numAlea, 1);
+                    }
                 }
 
                 this.$router.push({ name: 'Jeu', params: { props: { 
