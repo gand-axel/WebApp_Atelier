@@ -88,13 +88,13 @@ export default {
                 }
             })
             .then(response => {
-                this.jeu();
+                this.jeu(response.data.id);
             })
             .catch(error => {
                 this.showDismissibleAlert = true;
             });
         },
-        jeu() {
+        jeu(id) {
             axios.get(this.url + "series/" + this.idSerie + "/photos", {
                 headers: { 
                     "Authorization": "Bearer " + this.$route.params.props.dataUser.token
@@ -117,7 +117,8 @@ export default {
                     latitude: this.latitude,
                     longitude: this.longitude,
                     dist: this.dist,
-                    zoom: this.zoom
+                    zoom: this.zoom,
+                    idPartie: id
                 }}});
             })
             .catch(error => {
