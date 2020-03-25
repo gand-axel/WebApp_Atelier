@@ -42,8 +42,8 @@ export default {
     name: 'CreationPartie',
     data () {
         return {
-            /* url: "https://7a4b884a.ngrok.io/", */
-            url:"http://localhost:19280/",
+            url: "https://5516b998.ngrok.io/",
+            /* url:"http://localhost:19280/", */
             ville: null,
             series: [],
             tabSerieVille: [],
