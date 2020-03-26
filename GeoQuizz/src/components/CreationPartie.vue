@@ -34,7 +34,7 @@ export default {
     },
     data () {
         return {
-            url: "https://c84bcdc8.ngrok.io/",
+            url: "https://2eb8a480.ngrok.io/",
             /* url:"http://localhost:19280/", */
             ville: null,
             series: [],

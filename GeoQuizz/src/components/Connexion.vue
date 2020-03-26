@@ -61,7 +61,7 @@ export default {
     name: 'Connexion',
     data () {
         return {
-            url: "https://c84bcdc8.ngrok.io/joueurs",
+            url: "https://2eb8a480.ngrok.io/joueurs",
             /* url: "http://localhost:19280/joueurs", */
             form: true,
             mail: "",
