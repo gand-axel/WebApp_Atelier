@@ -7,8 +7,8 @@
         <b-container>
             <h1 class="text-center mt-5">Connexion</h1>
 
-            <b-alert v-model="alert" class="w-50 mx-auto" variant="danger" dismissible>Veuillez saisir une adresse mail correcte</b-alert>
-            <b-alert v-model="alertMdp" class="w-50 mx-auto" variant="danger" dismissible>Mot de passe incorrect</b-alert>
+            <b-alert v-model="alert" class="w-50 mx-auto" variant="danger" dismissible>Veuillez saisir une adresse mail ou un mot de passe correct</b-alert>
+            <b-alert v-model="alertMdp" class="w-50 mx-auto" variant="danger" dismissible>Veuillez saisir une adresse mail ou un mot de passe correct</b-alert>
 
             <b-alert class="w-50 mx-auto" :show="dismissCountDown" dismissible variant="success" @dismissed="dismissCountDown=0" @dismiss-count-down="countDownChanged">
                 <p>Votre compte a été créé avec succès !</p>
@@ -61,7 +61,7 @@ export default {
     name: 'Connexion',
     data () {
         return {
-            url: "https://2eb8a480.ngrok.io/joueurs",
+            url: "https://d684aea3.ngrok.io/joueurs",
             /* url: "http://localhost:19280/joueurs", */
             form: true,
             mail: "",

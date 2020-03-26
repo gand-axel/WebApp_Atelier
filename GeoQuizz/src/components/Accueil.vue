@@ -11,7 +11,7 @@
                 <h3>Parties Créées :</h3>
                 <b-table v-if="resultat" striped hover :items="parties" :fields="fields">
                     <template v-slot:cell(play)="data">
-                        <b-button type="button" variant="success" @click="jouer(data.item.id, data.item.idSerie, data.item.nbPhotos)">{{ data.value }}</b-button>
+                        <b-button type="button" variant="outline-success" @click="jouer(data.item.id, data.item.idSerie, data.item.nbPhotos)">{{ data.value }}</b-button>
                     </template>
                 </b-table>
                 <p v-else>Aucunes parties n'a été créées.</p>
@@ -31,7 +31,7 @@ export default {
     },
     data () {
         return {
-            url: "https://2eb8a480.ngrok.io/",
+            url: "https://d684aea3.ngrok.io/",
             parties: [],
             tabSerie: [],
             ville: null,

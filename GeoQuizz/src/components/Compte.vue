@@ -15,7 +15,11 @@
                 </b-row>
 
                 <h3>Parties terminées :</h3>
-                <b-table v-if="resultat" striped hover :items="parties" :fields="fields" />
+                <b-table v-if="resultat" striped hover :items="parties" :fields="fields">
+                    <template v-slot:cell(temps)="data">
+                        {{ data.value }}
+                    </template>
+                </b-table>
                 <p v-else>Aucunes parties n'a été terminées.</p>
             </div>
         </b-container>
@@ -33,7 +37,7 @@ export default {
     },
     data () {
         return {
-            url: "https://2eb8a480.ngrok.io/",
+            url: "https://d684aea3.ngrok.io/",
             parties: [],
             tabVille: [],
             ville: null,
@@ -44,6 +48,8 @@ export default {
                 { key: 'score', label: 'Score', sortable: false },
                 { key: 'temps', label: 'Fait en :', sortable: false }
             ],
+            temps: null,
+            zero: "",
             creation: null,
             mail: null,
             pseudo: null,
@@ -93,18 +99,23 @@ export default {
                 this.tabVille.forEach(res => {
                     if(partie.partie.refSerie == res.id) this.ville = res.ville;
                 })
+                this.temps = new Date();
+                this.temps.setTime(partie.partie.temps*1000);
+                if(this.temps.getSeconds() < 10) this.zero = "0";
+                else this.zero = "";
                 this.parties.push({
                     date: new Date(partie.partie.updated_at).toLocaleDateString(),
                     ville: this.ville,
                     photos: partie.partie.nb_photos,
                     score: partie.partie.score,
-                    temps: partie.partie.temps
+                    temps: this.temps.getMinutes() + "min. " + this.zero + this.temps.getSeconds() + "sec."
                 });
             });
             this.spinner = false;
             this.resultat = true;
         })
         .catch(error => {
+            console.log(error)
             this.spinner = false;
             this.resultat = false;
         });

@@ -5,6 +5,7 @@
             <h1 class="text-center mt-5">Création de la partie</h1>
 
             <b-alert class="w-50 mx-auto" v-model="showDismissibleAlert" variant="danger" dismissible>Une erreur s'est produite...</b-alert>
+            <b-alert v-model="alert" class="w-50 mx-auto" variant="danger" dismissible>Veuillez choisir une ville</b-alert>
 
             <b-form class="mt-5 w-50 mx-auto" @submit="submit">
                 <b-form-group label="Choisissez une ville :">
@@ -16,7 +17,8 @@
                 </b-form-group>
 
                 <div class="text-center mt-5">
-                    <b-button pill type="submit" variant="success">Jouer</b-button>
+                    <b-button class="mr-3" type="button" variant="success" @click="createPartie">Créer la partie</b-button>
+                    <b-button type="submit" variant="success">Jouer</b-button>
                 </div>
             </b-form>
         </b-container>
@@ -34,7 +36,7 @@ export default {
     },
     data () {
         return {
-            url: "https://2eb8a480.ngrok.io/",
+            url: "https://d684aea3.ngrok.io/",
             /* url:"http://localhost:19280/", */
             ville: null,
             series: [],
@@ -53,7 +55,8 @@ export default {
             showDismissibleAlert: false,
             dataJeu: [],
             difference: 0,
-            numAlea: 0
+            numAlea: 0,
+            alert: false
         }
     },
     methods: {
@@ -86,6 +89,36 @@ export default {
             .catch(error => {
                 this.showDismissibleAlert = true;
             });
+        },
+        createPartie() {
+            if(this.ville !== null){
+                this.series.forEach(serie => {
+                    if(this.ville === serie.ville) {
+                        this.idSerie = serie.id;
+                    }
+                });
+
+                axios.post(this.url + "parties", {
+                    nb_photos: this.nbPhotos,
+                    statut: "Créée",
+                    refJoueur: this.$route.params.props.dataUser.id,
+                    refSerie: this.idSerie
+                },
+                {
+                    headers: { 
+                        "Authorization": "Bearer " + this.$route.params.props.dataUser.token
+                    }
+                })
+                .then(response => {
+                    this.$router.push({ name: 'Accueil', params: { props: { dataUser: this.$route.params.props.dataUser } } });
+                })
+                .catch(error => {
+                    this.showDismissibleAlert = true;
+                });
+            }
+            else {
+                this.alert = true;
+            }
         },
         jeu(id) {
             axios.get(this.url + "series/" + this.idSerie + "/photos", {
