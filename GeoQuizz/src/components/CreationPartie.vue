@@ -42,7 +42,7 @@ export default {
     name: 'CreationPartie',
     data () {
         return {
-            url: "https://94c5d46a.ngrok.io/",
+            url: "https://c84bcdc8.ngrok.io/",
             /* url:"http://localhost:19280/", */
             ville: null,
             series: [],

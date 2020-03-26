@@ -25,7 +25,7 @@ export default {
         }
     },
     created: function() {
-        //console.log(this.$route.params.props.dataUser)
+        
     }
 }
 </script>
