@@ -9,11 +9,12 @@
             </div>
             <div v-else class="mt-5">
                 <h3>Parties Créées :</h3>
-                <b-table striped hover :items="parties" :fields="fields">
+                <b-table v-if="resultat" striped hover :items="parties" :fields="fields">
                     <template v-slot:cell(play)="data">
                         <b-button type="button" variant="success" @click="jouer(data.item.id, data.item.idSerie, data.item.nbPhotos)">{{ data.value }}</b-button>
                     </template>
                 </b-table>
+                <p v-else>Aucunes parties n'a été créées.</p>
             </div>
         </b-container>
     </div>
@@ -47,7 +48,8 @@ export default {
             latitude: null,
             longitude: null,
             dist: null,
-            zoom: null
+            zoom: null,
+            resultat: false
         }
     },
     methods: {
@@ -136,9 +138,11 @@ export default {
                 });
             });
             this.spinner = false;
+            this.resultat = true;
         })
         .catch(error => {
-            console.error(error);
+            this.spinner = false;
+            this.resultat = false;
         });
     }
 }

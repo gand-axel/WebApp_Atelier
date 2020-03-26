@@ -13,9 +13,10 @@
                     <b-col><strong>Pseudonyme </strong>: {{ pseudo }}</b-col>
                     <b-col><strong>Adresse mail </strong>: {{ mail }}</b-col>
                 </b-row>
-                
+
                 <h3>Parties terminées :</h3>
-                <b-table striped hover :items="parties" :fields="fields" />
+                <b-table v-if="resultat" striped hover :items="parties" :fields="fields" />
+                <p v-else>Aucunes parties n'a été terminées.</p>
             </div>
         </b-container>
     </div>
@@ -46,7 +47,8 @@ export default {
             creation: null,
             mail: null,
             pseudo: null,
-            spinner: true
+            spinner: true,
+            resultat: false
         }
     },
     created: function() {
@@ -100,9 +102,11 @@ export default {
                 });
             });
             this.spinner = false;
+            this.resultat = true;
         })
         .catch(error => {
-            console.error(error);
+            this.spinner = false;
+            this.resultat = false;
         });
     }
 }

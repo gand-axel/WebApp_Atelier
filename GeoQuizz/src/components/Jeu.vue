@@ -55,8 +55,8 @@ export default {
   name: "Jeu",
   data() {
     return {
-      /* url: "https://c84bcdc8.ngrok.io/", */
-      url: "http://localhost:19280/", 
+      url: "https://c84bcdc8.ngrok.io/",
+      /* url: "http://localhost:19280/",  */
       center: null,
       photos: this.$route.params.props.photos,
       index: 0,
@@ -65,22 +65,24 @@ export default {
       distance: 0,
       dist: this.$route.params.props.dist,
       score: 0,
-      time: 3
+      time: 60,
+      tempsTotal: 0
     };
   },
-   timers: {
+  timers: {
     temps: {time:1000, autostart:true, repeat:true}
-  }, 
+  },
   methods: {
-      temps() {
+    temps() {
       this.time -= 1;
       if(this.time == 0) {
         this.$timer.stop('temps');
         if(this.photos.length == (this.index + 1)) this.valider();
         else this.nextPhoto();
       }
-    },  
+    },
     jeu() {
+      this.tempsTotal += 60-this.time;
       this.distance = this.google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(this.path[0].lat, this.path[0].lng), new google.maps.LatLng(this.path[1].lat, this.path[1].lng));
 
       if(this.distance === 0) {
@@ -94,17 +96,20 @@ export default {
       } else this.score += 0;
     },
     nextPhoto() {
+      this.$timer.stop('temps');
       this.jeu();
       this.index += 1;
-       this.time = 2;
-      this.$timer.start('temps');  
+      this.time = 60;
+      this.$timer.start('temps');
     },
     valider() {
+      this.$timer.stop('temps');
       this.jeu();
 
       axios.put(this.url + "parties/" + this.$route.params.props.idPartie, {
         statut: "Terminée",
-        score: this.score
+        score: this.score,
+        temps: this.tempsTotal
       },
       {
         headers: { 
