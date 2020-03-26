@@ -15,6 +15,7 @@
     "bootstrap-vue": "^2.7.0",
     "vue": "^2.6.11",
     "vue-router": "^3.0.1",
+    "vue-timers": "^2.0.4",
     "vue2-google-maps": "^0.10.7"
   },
   "devDependencies": {

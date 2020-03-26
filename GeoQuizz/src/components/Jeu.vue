@@ -30,7 +30,8 @@
             </div>
 
             <div class="mt-3">
-              <p><b-icon-clock-history class="text-primary" /> {{ time }}</p>
+              <p v-if="this.time > 10"><b-icon-clock-history class="text-primary" /> {{ time }}</p>
+              <p v-else class="text-danger"><b-icon-clock-history class="text-primary" /> {{ time }}</p>
               <p><b-icon-star-fill class="text-warning"/> {{ score }}</p>
               <div class="mt-3">
                 <b-button v-if="photos.length == (index+1)" type="button" variant="success" @click="valider">Valider</b-button>
@@ -54,7 +55,8 @@ export default {
   name: "Jeu",
   data() {
     return {
-      url: "https://c84bcdc8.ngrok.io/",
+      /* url: "https://c84bcdc8.ngrok.io/", */
+      url: "http://localhost:19280/", 
       center: null,
       photos: this.$route.params.props.photos,
       index: 0,
@@ -63,10 +65,21 @@ export default {
       distance: 0,
       dist: this.$route.params.props.dist,
       score: 0,
-      time: 60
+      time: 3
     };
   },
+   timers: {
+    temps: {time:1000, autostart:true, repeat:true}
+  }, 
   methods: {
+      temps() {
+      this.time -= 1;
+      if(this.time == 0) {
+        this.$timer.stop('temps');
+        if(this.photos.length == (this.index + 1)) this.valider();
+        else this.nextPhoto();
+      }
+    },  
     jeu() {
       this.distance = this.google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(this.path[0].lat, this.path[0].lng), new google.maps.LatLng(this.path[1].lat, this.path[1].lng));
 
@@ -83,6 +96,8 @@ export default {
     nextPhoto() {
       this.jeu();
       this.index += 1;
+       this.time = 2;
+      this.$timer.start('temps');  
     },
     valider() {
       this.jeu();
