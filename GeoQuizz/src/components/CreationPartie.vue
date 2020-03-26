@@ -98,7 +98,6 @@ export default {
                     this.dataJeu.push(photo.photo);
                 });
                 
-
                 this.difference = this.dataJeu.length - this.nbPhotos;
                 if(this.difference > 0) {
                     for(let i=0; i<this.difference; i++){

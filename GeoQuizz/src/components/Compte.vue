@@ -1,9 +1,23 @@
 <template>
     <div>
         <NavBar />
-        <h1 class="text-center mt-5">Compte</h1>
+        <b-container fluid>
+            <h1 class="text-center mt-5">Compte</h1>
 
-        <b-table striped hover :items="parties" :fields="fields" />
+            <div v-if="spinner" class="text-center mt-5">
+                <b-spinner variant="primary" label="Spinning"></b-spinner>
+            </div>
+            <div v-else class="mt-5">
+                <b-row class="border border-dark rounded text-center mb-5 py-3 mx-5">
+                    <b-col><strong>Compte créé le </strong>: {{ creation }}</b-col>
+                    <b-col><strong>Pseudonyme </strong>: {{ pseudo }}</b-col>
+                    <b-col><strong>Adresse mail </strong>: {{ mail }}</b-col>
+                </b-row>
+                
+                <h3>Parties terminées :</h3>
+                <b-table striped hover :items="parties" :fields="fields" />
+            </div>
+        </b-container>
     </div>
 </template>
 
@@ -28,10 +42,28 @@ export default {
                 { key: 'photos', label: 'Nombre de photos', sortable: false },
                 { key: 'score', label: 'Score', sortable: false },
                 { key: 'temps', label: 'Fait en :', sortable: false }
-            ]
+            ],
+            creation: null,
+            mail: null,
+            pseudo: null,
+            spinner: true
         }
     },
     created: function() {
+        axios.get(this.url + "joueurs/" + this.$route.params.props.dataUser.id, {
+            headers: { 
+                "Authorization": "Bearer " + this.$route.params.props.dataUser.token
+            }
+        })
+        .then(response => {
+            this.creation = new Date(response.data.joueur.created_at).toLocaleDateString();
+            this.mail = response.data.joueur.mail;
+            this.pseudo = response.data.joueur.pseudo;
+        })
+        .catch(error => {
+            console.error(error);
+        });
+
         axios.get(this.url + "series", {
             headers: { 
                 "Authorization": "Bearer " + this.$route.params.props.dataUser.token
@@ -67,6 +99,7 @@ export default {
                     temps: partie.partie.temps
                 });
             });
+            this.spinner = false;
         })
         .catch(error => {
             console.error(error);
