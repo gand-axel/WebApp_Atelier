@@ -7,6 +7,9 @@
         <b-container>
             <h1 class="text-center mt-5">Connexion</h1>
 
+            <b-alert v-model="alert" class="w-50 mx-auto" variant="danger" dismissible>Veuillez saisir une adresse mail correcte</b-alert>
+            <b-alert v-model="alertMdp" class="w-50 mx-auto" variant="danger" dismissible>Mot de passe incorrect</b-alert>
+
             <b-alert class="w-50 mx-auto" :show="dismissCountDown" dismissible variant="success" @dismissed="dismissCountDown=0" @dismiss-count-down="countDownChanged">
                 <p>Votre compte a été créé avec succès !</p>
                 <b-progress variant="success" :max="dismissSecs" :value="dismissCountDown" height="4px" />
@@ -67,7 +70,9 @@ export default {
 
             dismissSecs: 5,
             dismissCountDown: 0,
-            showDismissibleAlert: false
+            showDismissibleAlert: false,
+            alert: false,
+            alertMdp: false
         }
     },
     methods: {
@@ -80,10 +85,13 @@ export default {
                 }
             })
             .then(response => {
-                this.$router.replace({ name: 'Accueil', params: { props: { dataUser: response.data } }});
+                if(response.data.error == 404) {
+                    this.alert = true;
+                }
+                else this.$router.replace({ name: 'Accueil', params: { props: { dataUser: response.data } }});
             })
             .catch(error => {
-                console.error(error);
+                this.alertMdp = true;
             });
         },
         submitCreate(evt) {
@@ -111,7 +119,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>

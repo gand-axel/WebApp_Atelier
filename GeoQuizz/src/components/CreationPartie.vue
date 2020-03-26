@@ -1,18 +1,6 @@
 <template>
     <div>
-        <b-navbar toggleable="lg" type="dark" variant="dark">
-            <b-navbar-brand><router-link class="text-white text-decoration-none" :to="{ name: 'Accueil', params: { props: { dataUser: this.$route.params.props.dataUser } } }">GeoQuizz</router-link></b-navbar-brand>
-            <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-            <b-collapse id="nav-collapse" is-nav>
-                <b-navbar-nav>
-                    <b-nav-item><router-link class="text-white text-decoration-none" :to="{ name: 'CreationPartie', params: { props: { dataUser: this.$route.params.props.dataUser } } }">Créer une partie</router-link></b-nav-item>
-                    <!-- <b-nav-item href="#" disabled>Disabled</b-nav-item> -->
-                </b-navbar-nav>
-            </b-collapse>
-
-            <b-button right variant="danger"><router-link class="text-white text-decoration-none" :to="{ name: 'Connexion' }">Déconnexion</router-link></b-button>
-        </b-navbar>
-
+        <NavBar />
         <b-container>
             <h1 class="text-center mt-5">Création de la partie</h1>
 
@@ -37,9 +25,13 @@
 
 <script>
 import axios from "axios";
+import NavBar from "./NavBar";
 
 export default {
     name: 'CreationPartie',
+    components: {
+        NavBar
+    },
     data () {
         return {
             url: "https://c84bcdc8.ngrok.io/",
@@ -106,8 +98,9 @@ export default {
                     this.dataJeu.push(photo.photo);
                 });
                 
+
                 this.difference = this.dataJeu.length - this.nbPhotos;
-                if(this.diférence > 0) {
+                if(this.difference > 0) {
                     for(let i=0; i<this.difference; i++){
                         this.numAlea = Math.floor(Math.random()*(this.dataJeu.length-1));
                         this.dataJeu.splice(this.numAlea, 1);
@@ -160,7 +153,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>
