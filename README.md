@@ -27,7 +27,7 @@ Soit vous créez un compte.
 Soit vous utilisez un compte déjà créé :
 
 Adresse mail :
-> gand@gmail.com
+> user@user.com
 
 Mot de passe :
-> admin
+> user
