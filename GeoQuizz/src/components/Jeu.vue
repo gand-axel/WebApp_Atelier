@@ -36,7 +36,7 @@
               <div class="mt-3">
                 <div v-if="spinner">
                     <b-spinner variant="primary" label="Spinning"></b-spinner>
-                  </div>
+                </div>
                 <div v-else>
                   <b-button pill v-if="photos.length == (index+1)" type="button" variant="success" @click="valider">Valider</b-button>
                   <b-button pill v-else type="button" variant="success" @click="nextPhoto">Suivant</b-button>
