@@ -1,7 +1,11 @@
 <template>
     <div>
         <b-navbar toggleable="lg" type="dark" variant="dark">
-            <b-navbar-brand><router-link class="text-white text-decoration-none" :to="{ name: 'Accueil', params: { props: { dataUser: this.$route.params.props.dataUser } } }">GeoQuizz</router-link></b-navbar-brand>
+            <b-navbar-brand>
+                <router-link class="text-white text-decoration-none" :to="{ name: 'Accueil', params: { props: { dataUser: this.$route.params.props.dataUser } } }">
+                    <img src="../assets/logo.png" class="d-inline-block align-top" alt="logo" style="height: 1.5em"> GeoQuizz
+                </router-link>
+            </b-navbar-brand>
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
