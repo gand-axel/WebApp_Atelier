@@ -37,7 +37,7 @@ export default {
     },
     data () {
         return {
-            url: "https://3f473e46.ngrok.io/",
+            url: "http://localhost:19280/",
             parties: [],
             tabVille: [],
             ville: null,

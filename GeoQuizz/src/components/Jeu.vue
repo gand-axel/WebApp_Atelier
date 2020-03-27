@@ -60,8 +60,7 @@ export default {
   name: "Jeu",
   data() {
     return {
-      url: "https://3f473e46.ngrok.io/",
-      /* url: "http://localhost:19280/",  */
+      url: "http://localhost:19280/",
       center: null,
       photos: this.$route.params.props.photos,
       index: 0,
