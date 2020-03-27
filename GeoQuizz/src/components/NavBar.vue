@@ -11,6 +11,7 @@
                 <b-navbar-nav>
                     <b-nav-item><router-link class="text-white text-decoration-none" :to="{ name: 'CreationPartie', params: { props: { dataUser: this.$route.params.props.dataUser } } }">Créer une partie</router-link></b-nav-item>
                     <b-nav-item><router-link class="text-white text-decoration-none" :to="{ name: 'Compte', params: { props: { dataUser: this.$route.params.props.dataUser } } }">Compte</router-link></b-nav-item>
+                    <b-nav-item><router-link class="text-white text-decoration-none" :to="{ name: 'Regles', params: { props: { dataUser: this.$route.params.props.dataUser } } }">Règles du jeu</router-link></b-nav-item>
                 </b-navbar-nav>
             </b-collapse>
             <b-button right variant="danger"><router-link class="text-white text-decoration-none" :to="{ name: 'Connexion' }">Déconnexion</router-link></b-button>
