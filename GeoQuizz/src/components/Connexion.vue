@@ -65,7 +65,7 @@ export default {
     name: 'Connexion',
     data () {
         return {
-            url: "http://localhost:19280/joueurs",
+            url: "http://docketu.iutnc.univ-lorraine.fr:60280/joueurs",
             form: true,
             mail: "",
             mdp: "",

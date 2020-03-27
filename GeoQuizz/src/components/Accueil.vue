@@ -32,7 +32,7 @@ export default {
     },
     data () {
         return {
-            url: "http://localhost:19280/",
+            url: "http://docketu.iutnc.univ-lorraine.fr:60280/",
             parties: [],
             tabSerie: [],
             ville: null,

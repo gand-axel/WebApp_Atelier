@@ -60,7 +60,7 @@ export default {
   name: "Jeu",
   data() {
     return {
-      url: "http://localhost:19280/",
+      url: "http://docketu.iutnc.univ-lorraine.fr:60280/",
       center: null,
       photos: this.$route.params.props.photos,
       index: 0,
