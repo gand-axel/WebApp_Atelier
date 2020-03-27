@@ -11,7 +11,8 @@
                 <h3>Parties Créées :</h3>
                 <b-table v-if="resultat" striped hover :items="parties" :fields="fields">
                     <template v-slot:cell(play)="data">
-                        <b-button type="button" variant="outline-success" @click="jouer(data.item.id, data.item.idSerie, data.item.nbPhotos)">{{ data.value }}</b-button>
+                        <b-spinner v-if="spin" variant="primary" label="Spinning"></b-spinner>
+                        <b-button v-else pill type="button" variant="outline-success" @click="jouer(data.item.id, data.item.idSerie, data.item.nbPhotos)">{{ data.value }}</b-button>
                     </template>
                 </b-table>
                 <p v-else>Aucunes parties n'a été créées.</p>
@@ -31,7 +32,7 @@ export default {
     },
     data () {
         return {
-            url: "https://d684aea3.ngrok.io/",
+            url: "https://789a8d57.ngrok.io/",
             parties: [],
             tabSerie: [],
             ville: null,
@@ -42,6 +43,7 @@ export default {
                 { key: 'play', label: '', sortable: false }
             ],
             spinner: true,
+            spin: false,
             dataJeu: [],
             difference: 0,
             numAlea: 0,
@@ -54,6 +56,8 @@ export default {
     },
     methods: {
         jouer(idPartie, idSerie, nbPhotos) {
+            this.spin = true;
+
             axios.get(this.url + "series/" + idSerie + "/photos", {
                 headers: { 
                     "Authorization": "Bearer " + this.$route.params.props.dataUser.token

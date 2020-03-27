@@ -22,7 +22,7 @@
           <div class="d-flex flex-column">
 
             <h3 class="text-center">Déplacer le curseur sur la carte et trouvez l'emplacement du lieu correspondant à l'image</h3>
-            <p class="text-center text-muted mb-0">Plus vous êtes précis, plus vous gagnez de points !</p>
+            <p class="text-center text-muted mb-0">Plus vous êtes précis et rapide, plus vous gagnez de points !</p>
             <p class="text-center text-muted">Faites attention au temps !</p>
 
             <div>
@@ -30,12 +30,17 @@
             </div>
 
             <div class="mt-3">
-              <p v-if="this.time > 10"><b-icon-clock-history class="text-primary" /> {{ time }}</p>
-              <p v-else class="text-danger"><b-icon-clock-history class="text-primary" /> {{ time }}</p>
+              <p v-if="this.time <= 5" class="text-danger"><b-icon-clock-history class="text-primary" /> {{ time }}</p>
+              <p v-else><b-icon-clock-history class="text-primary" /> {{ time }}</p>
               <p><b-icon-star-fill class="text-warning"/> {{ score }}</p>
               <div class="mt-3">
-                <b-button v-if="photos.length == (index+1)" type="button" variant="success" @click="valider">Valider</b-button>
-                <b-button v-else type="button" variant="success" @click="nextPhoto">Suivant</b-button>
+                <div v-if="spinner">
+                    <b-spinner variant="primary" label="Spinning"></b-spinner>
+                  </div>
+                <div v-else>
+                  <b-button pill v-if="photos.length == (index+1)" type="button" variant="success" @click="valider">Valider</b-button>
+                  <b-button pill v-else type="button" variant="success" @click="nextPhoto">Suivant</b-button>
+                </div>
               </div>
             </div>
 
@@ -55,7 +60,7 @@ export default {
   name: "Jeu",
   data() {
     return {
-      url: "https://d684aea3.ngrok.io/",
+      url: "https://789a8d57.ngrok.io/",
       /* url: "http://localhost:19280/",  */
       center: null,
       photos: this.$route.params.props.photos,
@@ -65,8 +70,10 @@ export default {
       distance: 0,
       dist: this.$route.params.props.dist,
       score: 0,
-      time: 60,
-      tempsTotal: 0
+      time: 20,
+      tempsTotal: 0,
+      mult: 0,
+      spinner: false
     };
   },
   timers: {
@@ -82,27 +89,36 @@ export default {
       }
     },
     jeu() {
-      this.tempsTotal += 60-this.time;
+      this.tempsTotal += 20-this.time;
       this.distance = this.google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(this.path[0].lat, this.path[0].lng), new google.maps.LatLng(this.path[1].lat, this.path[1].lng));
 
+      if(20-this.time <= 5){
+        this.mult = 4;
+      } else if(20-this.time > 5 && 20-this.time <= 10){
+        this.mult = 2;
+      } else if(20-this.time > 10 && 20-this.time < 20){
+        this.mult = 1;
+      } else this.mult = 0;
+
       if(this.distance === 0) {
-        this.score += 100;
+        this.score += 100 * this.mult;
       } else if(this.distance <= this.dist) {
-        this.score += 5;
+        this.score += 5 * this.mult;
       } else if(this.distance > this.dist && this.distance <= this.dist*2) {
-        this.score += 3;
+        this.score += 3 * this.mult;
       } else if(this.distance > this.dist*2 && this.distance <= this.dist*3) {
-        this.score += 1;
+        this.score += 1 * this.mult;
       } else this.score += 0;
     },
     nextPhoto() {
       this.$timer.stop('temps');
       this.jeu();
       this.index += 1;
-      this.time = 60;
+      this.time = 20;
       this.$timer.start('temps');
     },
     valider() {
+      this.spinner = true;
       this.$timer.stop('temps');
       this.jeu();
 

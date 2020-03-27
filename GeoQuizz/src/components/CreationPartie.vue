@@ -17,8 +17,13 @@
                 </b-form-group>
 
                 <div class="text-center mt-5">
-                    <b-button class="mr-3" type="button" variant="success" @click="createPartie">Créer la partie</b-button>
-                    <b-button type="submit" variant="success">Jouer</b-button>
+                    <div v-if="spinner">
+                        <b-spinner variant="primary" label="Spinning"></b-spinner>
+                    </div>
+                    <div v-else>
+                        <b-button pill class="mr-3" type="button" variant="success" @click="createPartie">Créer la partie</b-button>
+                        <b-button pill type="submit" variant="success">Jouer</b-button>
+                    </div>
                 </div>
             </b-form>
         </b-container>
@@ -36,7 +41,7 @@ export default {
     },
     data () {
         return {
-            url: "https://d684aea3.ngrok.io/",
+            url: "https://789a8d57.ngrok.io/",
             /* url:"http://localhost:19280/", */
             ville: null,
             series: [],
@@ -56,12 +61,15 @@ export default {
             dataJeu: [],
             difference: 0,
             numAlea: 0,
-            alert: false
+            alert: false,
+            spinner: false
         }
     },
     methods: {
         submit(evt) {
             evt.preventDefault()
+            this.spinner = true;
+            
             this.series.forEach(serie => {
                 if(this.ville === serie.ville) {
                     this.idSerie = serie.id;
@@ -92,6 +100,7 @@ export default {
         },
         createPartie() {
             if(this.ville !== null){
+                this.spinner = true;
                 this.series.forEach(serie => {
                     if(this.ville === serie.ville) {
                         this.idSerie = serie.id;
