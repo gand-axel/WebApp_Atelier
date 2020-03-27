@@ -32,7 +32,7 @@ export default {
     },
     data () {
         return {
-            url: "https://789a8d57.ngrok.io/",
+            url: "https://3f473e46.ngrok.io/",
             parties: [],
             tabSerie: [],
             ville: null,

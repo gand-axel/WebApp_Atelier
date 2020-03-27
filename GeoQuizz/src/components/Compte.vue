@@ -16,8 +16,8 @@
 
                 <h3>Parties terminées :</h3>
                 <b-table v-if="resultat" striped hover :items="parties" :fields="fields">
-                    <template v-slot:cell(temps)="data">
-                        {{ data.value }}
+                    <template v-slot:cell(score)="data">
+                        <b-icon-star-fill class="text-warning"/> {{ data.value }}
                     </template>
                 </b-table>
                 <p v-else>Aucunes parties n'a été terminées.</p>
@@ -37,7 +37,7 @@ export default {
     },
     data () {
         return {
-            url: "https://789a8d57.ngrok.io/",
+            url: "https://3f473e46.ngrok.io/",
             parties: [],
             tabVille: [],
             ville: null,
@@ -115,7 +115,6 @@ export default {
             this.resultat = true;
         })
         .catch(error => {
-            console.log(error)
             this.spinner = false;
             this.resultat = false;
         });
