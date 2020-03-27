@@ -5,6 +5,7 @@ import Accueil from '@/components/Accueil';
 import Compte from '@/components/Compte';
 import CreationPartie from '@/components/CreationPartie';
 import Jeu from '@/components/Jeu';
+import NotFound from '@/components/NotFound';
 
 Vue.use(Router);
 
@@ -35,6 +36,11 @@ export default new Router({
       path: '/jeu',
       name: 'Jeu',
       component: Jeu
+    },
+    {
+      path: '*',
+      name: 'NotFound',
+      component: NotFound
     }
   ]
 });
