@@ -16,6 +16,9 @@
 
                 <h3>Parties terminées :</h3>
                 <b-table v-if="resultat" striped hover :items="parties" :fields="fields">
+                    <template v-slot:cell(photos)="data">
+                        <b-icon-camera class="text-primary"/> {{ data.value }}
+                    </template>
                     <template v-slot:cell(score)="data">
                         <b-icon-star-fill class="text-warning"/> {{ data.value }}
                     </template>

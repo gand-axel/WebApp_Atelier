@@ -10,6 +10,9 @@
             <div v-else class="mt-5">
                 <h3>Parties Créées :</h3>
                 <b-table v-if="resultat" striped hover :items="parties" :fields="fields">
+                    <template v-slot:cell(nbPhotos)="data">
+                        <b-icon-camera class="text-primary"/> {{ data.value }}
+                    </template>
                     <template v-slot:cell(play)="data">
                         <b-spinner v-if="spin" variant="primary" label="Spinning"></b-spinner>
                         <b-button v-else pill type="button" variant="outline-success" @click="jouer(data.item.id, data.item.idSerie, data.item.nbPhotos)">{{ data.value }}</b-button>
