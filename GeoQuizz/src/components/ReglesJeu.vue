@@ -19,7 +19,7 @@
               Une fois le jeu lancé, vous arrivez sur une page avec une map et une photo. Le but est de trouver la position de l'endroit indiqué sur la photo, pour cela rien de plus simple, prenez le petit marqueur sur la mini map et déplacez le à l'endroit ou vous pensez que la photo se situe.
             </p>
             <p class="text-danger"><strong>Attention</strong> vous avez un temps limité pour trouver l'endroit.</p>
-            <p>Une fois le temps arrivé à 0, vous passez à la photo suivante et vous marquez 0 points. Alors soyez rapide...</p>
+            <p>Une fois le temps arrivé à 0, vous passez à la photo suivante et vous marquez 0 point. Alors soyez rapide...</p>
             <li>Comment marquer des points ?</li>
             <p>Pour marquer des points c'est très simple, plus vous êtes proche des coordonnées réelles de la photo, plus vous marquez de points.</p>
             <p>De plus la rapidité est une arme très puissante dans ce jeu, si vous trouvez la position en moins de 5 secondes les points sont multipliés par 4, entre 5 et 10 secondes par 2 et au delà de 10 secondes multiplié par 1. Et si vous ne trouvez pas avant la fin du temps c'est 0 point.</p>
