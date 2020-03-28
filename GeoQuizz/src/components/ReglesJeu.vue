@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar />
-    <b-container class="bv-example-row bv-example-row-flex-cols" fluid>
+    <b-container class="mt-3">
       <b-row>
         <b-col align-self="center">
           <h5 class="mt-3">Règles du jeu :</h5>
@@ -18,13 +18,11 @@
               Pour jouer c'est très simple, il vous suffit de créer une partie avec la série souhaitée et le nombre de photos souhaité. Soit vous créez la partie pour y jouer un autre moment, soit vous êtes impatient de jouer et vous pouvez lancer le jeu directement en cliquant sur le bouton "Jouer".
               Une fois le jeu lancé, vous arrivez sur une page avec une map et une photo. Le but est de trouver la position de l'endroit indiqué sur la photo, pour cela rien de plus simple, prenez le petit marqueur sur la mini map et déplacez le à l'endroit ou vous pensez que la photo se situe.
             </p>
-            <p style="color:red;">
-              <strong>Attention</strong> vous avez un temps limité pour trouver l'endroit.
-            </p>
+            <p class="text-danger"><strong>Attention</strong> vous avez un temps limité pour trouver l'endroit.</p>
             <p>Une fois le temps arrivé à 0, vous passez à la photo suivante et vous marquez 0 points. Alors soyez rapide...</p>
             <li>Comment marquer des points ?</li>
             <p>Pour marquer des points c'est très simple, plus vous êtes proche des coordonnées réelles de la photo, plus vous marquez de points.</p>
-            <p>De plus la rapidité est une arme très puissante dans ce jeu, si vous trouvez la position en moins de 5 secondes les points sont multipliés par 4, entre 5 et 10 secondes par 2 et au delà de 10 secondes multiplié par 1. Et si vous ne trouvez pas avant la fin du temps c'est 0 points.</p>
+            <p>De plus la rapidité est une arme très puissante dans ce jeu, si vous trouvez la position en moins de 5 secondes les points sont multipliés par 4, entre 5 et 10 secondes par 2 et au delà de 10 secondes multiplié par 1. Et si vous ne trouvez pas avant la fin du temps c'est 0 point.</p>
             <p><strong>N'oubliez pas de valider votre marqueur en cliquant sur le bouton "Suivant" ou "Valider".</strong></p>
           </ul>
         </b-col>
